@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Vote contract for Midnight",
   "scripts": {
-    "build": "compactc src/Vote.compact out/Vote",
-    "test": "vitest"
+    "contract:build": "compactc contract/src/Vote.compact contract/out/Vote",
+    "contract:test": "vitest"
   },
   "engines": {
     "node": ">=22.18.0"
