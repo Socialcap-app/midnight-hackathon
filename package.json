@@ -1,0 +1,22 @@
+{
+  "name": "vote",
+  "version": "0.0.1",
+  "description": "Vote contract for Midnight",
+  "scripts": {
+    "build": "compactc src/Vote.compact out/Vote",
+    "test": "vitest"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "author": "SocialCap",
+  "license": "MIT",
+  "devDependencies": {
+    "@midnight-ntwrk/ledger": "^4.0.0",
+    "@types/node": "^24.2.0",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@midnight-ntwrk/compact-runtime": "^0.8.1"
+  }
+}

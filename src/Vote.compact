@@ -1,0 +1,99 @@
+// SPDX-License-Identifier: Apache-2.0
+
+pragma language_version 0.17;
+
+import CompactStandardLibrary;
+import "./modules/Ownable" prefix Ownable_;
+
+export { ZswapCoinPublicKey, ContractAddress, Either }; // To use in TypeScript tests
+
+//
+// Witnesses
+//
+witness findAuthPath(pk: Bytes<32>): MerkleTreePath<10, Bytes<32>>;
+witness secretKey(): Bytes<32>;
+witness randomNonce(): Bytes<32>;
+
+//
+// Contract State & Constructor
+//
+
+export ledger votersCount: Counter;
+export ledger voteCounts: Map<Uint<2>, Counter>;   // vote options are 0: FOR - 1: AGAINST - 2: ABSTEIN
+export ledger validatorsCommitments: HistoricMerkleTree<10, Bytes<32>>;
+export ledger validatorsNullifiers: Set<Bytes<32>>;
+
+constructor(initialOwner: Either<ZswapCoinPublicKey, ContractAddress>) {
+  Ownable_initialize(initialOwner);
+}
+
+//
+// OwnableCounter Circuits
+//
+
+export circuit addValidator(idCommitment: Bytes<32>): [] {
+  Ownable_assertOnlyOwner();
+  validatorsCommitments.insert(disclose(idCommitment));
+} 
+
+export circuit increment(): [] {
+  votersCount.increment(1);
+}
+
+export circuit vote_for_proposal(proposalUid: Bytes<32>): [] {
+  vote_on_proposal(proposalUid, 0);
+}
+
+export circuit vote_against_proposal(proposalUid: Bytes<32>): [] {
+  vote_on_proposal(proposalUid, 1);
+}
+
+export circuit vote_abstain_proposal(proposalUid: Bytes<32>): [] {
+  vote_on_proposal(proposalUid, 2);
+}
+
+export circuit get_for_count(): Uint<64> {
+  return voteCounts.lookup(0).read();
+}
+
+export circuit get_against_count(): Uint<64> {
+  return voteCounts.lookup(1).read();
+}
+
+export circuit get_abstain_count(): Uint<64> {
+  return voteCounts.lookup(2).read();
+}
+
+ circuit vote_on_proposal(proposalUid: Bytes<32>, index: Uint<2>): [] {
+  const sk = secretKey();
+  const rdmN = randomNonce();
+  // check authorized
+  const authPath = findAuthPath(identityCommitment(sk, rdmN));
+  assert(validatorsCommitments.checkRoot(merkleTreePathRoot<10, Bytes<32>>(disclose(authPath))), "not authorized");
+  // check nullifier
+  assert (!validatorsNullifiers.member(nullifier(identityCommitment(disclose(sk), disclose(rdmN)), disclose(proposalUid))), "Already voted");
+  validatorsNullifiers.insert(nullifier(identityCommitment(disclose(sk), disclose(rdmN)), disclose(proposalUid)));
+  increment();
+   // Increment vote count 
+  voteCounts.lookup(index).increment(1);
+}
+
+circuit identityCommitment(secretKey: Bytes<32>, randomNonce: Bytes<32>): Bytes<32> {
+  return persistentCommit<Vector<2, Bytes<32>>>([pad(32, "identity-commitment"), secretKey], randomNonce);
+}
+
+circuit nullifier(idCommitment: Bytes<32>, proposalUid: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<3, Bytes<32>>>([pad(32, "nullifier"), idCommitment, proposalUid]);
+}
+
+export circuit reset(): [] {
+  Ownable_assertOnlyOwner();
+  voteCounts.resetToDefault();
+  // do more resets here
+}
+
+//
+// Ownable Circuits
+// ONLY EXPORT IF NECESSARY
+
+
