@@ -4,18 +4,12 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Center, Loader } from '@mantine/core';
 
-export default function Home() {
+export default function AdminPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // TODO: Implement actual authentication check
-    const isAuthenticated = true;
-
-    if (isAuthenticated) {
-      router.push('/votes');
-    } else {
-      router.push('/login');
-    }
+    // Redirect to admin proposals by default
+    router.push('/admin/proposals');
   }, [router]);
 
   return (
