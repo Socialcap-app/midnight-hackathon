@@ -7,7 +7,6 @@ import {
   Text,
   Title,
   Group,
-  Anchor,
   Stack,
   Center
 } from '@mantine/core';
