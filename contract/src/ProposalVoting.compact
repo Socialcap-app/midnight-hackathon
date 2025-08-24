@@ -21,6 +21,12 @@ struct ProposalParamsType {
     endTime: Uint<32>
 }
 
+export enum ResultState {
+    APPROVED,
+    REJECTED,
+    IGNORED
+}
+
 // Ledger state
 
 // The IPFS CID od the proposal file
@@ -46,9 +52,21 @@ export ledger electorNullifiers: Set<Bytes<32>>;
 // The encription (public) key used to encrypt the votes
 export ledger encriptionKey: Bytes<32>;
 
+// Witnesses
+
 // private Nonce for hidding the encrypted votes hash 
-//witness nonce(): Uint<32>; 
+witness nonce(): Uint<32>; 
 
 // The final result ...
-export ledger result: Uint<8>; // 1.approved, 2.rejected, 3.ignored 
+export ledger result: ResultState;
+
+constructor(initialOwner: Either<ZswapCoinPublicKey, ContractAddress>, _proposalCid: Opaque<'string'>, _proposalReqs : ProposalReqsType, _proposalsParams: ProposalParamsType) {
+  Ownable_initialize(initialOwner);
+  proposalCid = disclose(_proposalCid);
+  proposalReqs = disclose(_proposalReqs);
+  proposalParams = disclose(_proposalsParams);
+}
+
+// Circuits
+//export circuit 
 

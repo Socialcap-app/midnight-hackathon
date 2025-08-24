@@ -1,5 +1,7 @@
 import type * as __compactRuntime from '@midnight-ntwrk/compact-runtime';
 
+export enum ResultState { APPROVED = 0, REJECTED = 1, IGNORED = 2 }
+
 export type ZswapCoinPublicKey = { bytes: Uint8Array };
 
 export type ContractAddress = { bytes: Uint8Array };
@@ -50,7 +52,7 @@ export type Ledger = {
     [Symbol.iterator](): Iterator<Uint8Array>
   };
   readonly encriptionKey: Uint8Array;
-  readonly result: bigint;
+  readonly result: ResultState;
 }
 
 export type ContractReferenceLocations = any;
@@ -62,7 +64,16 @@ export declare class Contract<T, W extends Witnesses<T> = Witnesses<T>> {
   circuits: Circuits<T>;
   impureCircuits: ImpureCircuits<T>;
   constructor(witnesses: W);
-  initialState(context: __compactRuntime.ConstructorContext<T>): __compactRuntime.ConstructorResult<T>;
+  initialState(context: __compactRuntime.ConstructorContext<T>,
+               initialOwner_0: Either<ZswapCoinPublicKey, ContractAddress>,
+               _proposalCid_0: string,
+               _proposalReqs_0: { credentialHash: string, weight: bigint },
+               _proposalsParams_0: { minElectors: bigint,
+                                     minPositives: bigint,
+                                     minVotes: bigint,
+                                     startTime: bigint,
+                                     endTime: bigint
+                                   }): __compactRuntime.ConstructorResult<T>;
 }
 
 export declare function ledger(state: __compactRuntime.StateValue): Ledger;
