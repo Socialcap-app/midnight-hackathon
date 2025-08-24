@@ -7,6 +7,20 @@ import "./modules/Ownable" prefix Ownable_;
 
 export { ZswapCoinPublicKey, ContractAddress, Either }; // To use in TypeScript tests
 
+// strruct types
+struct ProposalReqsType {
+    credentialHash: Opaque<'string'>,
+    weight: Uint<16>    
+} 
+
+struct ProposalParamsType {
+    minElectors: Uint<16>,
+    minPositives: Uint<16>,
+    minVotes: Uint<16>, // defines quorum
+    startTime: Uint<32>,
+    endTime: Uint<32>
+}
+
 // Ledger state
 
 // The IPFS CID od the proposal file
@@ -14,35 +28,26 @@ export ledger proposalCid: Opaque<'string'>;
 
 // Requirements for the proposal, for example an elector
 // needs to e a 'dev' and have more tna 50 points as dev. 
-export ledger struct proposalReqs {
-    credentialHash: Opaque<'string'>,
-    weight: Uint<16>    
-} 
+export ledger proposalReqs: ProposalReqsType;
 
 // The propsal voting params, such as quorum, votes needed for approval, etc
-export ledger struct proposalParams {
-    minElectors: Uint<16>,
-    minPositives: Uint<16>,
-    minVotes: Uint<16> // defines quorum
-    startTime: Unit<32>
-    endTime: Unit<32>
-}
+export ledger proposalParams: ProposalParamsType;
 
 // Merkle group of all registered electors in the community
 export ledger allElectors: MerkleTree<10, Bytes<32>>;
 
 // Merkle group of the selected electors for this proposal
-export selectedElectors: MerkleTree<10, Bytes<32>>; 
+export ledger selectedElectors: MerkleTree<10, Bytes<32>>; 
 
 // An elector included in the set has already voted
 // after an elector votes it is added to the set
-export electorNullifiers: Set<Bytes<32>>; 
+export ledger electorNullifiers: Set<Bytes<32>>; 
 
 // The encription (public) key used to encrypt the votes
-export ledger encriptionKey;
+export ledger encriptionKey: Bytes<32>;
 
 // private Nonce for hidding the encrypted votes hash 
-nonce: Uint<32>; 
+//witness nonce(): Uint<32>; 
 
 // The final result ...
 export ledger result: Uint<8>; // 1.approved, 2.rejected, 3.ignored 
