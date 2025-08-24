@@ -1,0 +1,89 @@
+
+
+
+
+
+// Witness
+
+
+// Ledger state
+
+export ledger proposalCid; // the IPFS CID od the proposal file
+
+export ledger struct proposalReqs {
+    credentialHash:
+    weight:     
+} 
+
+export ledger struct votingParams {
+    minElectors
+    minPositives,
+    minVotes // defines quorum
+    startTime
+    endTime
+}
+
+export ledger allElectors // Merkle group
+
+export selectedElectors // Merkle group
+
+export encriptionKey
+
+nonce // private for hidding the encrypted votes 
+
+export ledger result // approved, rejected, ignored 
+
+export nullifiers // Set of Bytes<32>
+
+// export owner // 
+
+// Circuits
+
+// inicialize el contrato con cid, params y reqs
+// admin
+constructor 
+
+// elector circuits
+
+createIdentity 
+    pin 
+    publicKey 
+    privateKey 
+    credential: 
+    weight: 
+
+registerAsElector
+    identityCommitment
+
+isSelectedElector
+    identityCommitment
+
+submitVote 
+    identityCommitment
+    pin 
+    publicKey 
+    privateKey 
+    credential: 
+    weight: 
+    vote: 
+
+// admin circuits
+// ownable
+
+startVoting
+
+endVoting
+
+tallyVotes
+
+// helper verification circuits
+
+isValidElector
+
+hasAlreadyVoted
+
+hasCredentialWeight
+
+
+
+
