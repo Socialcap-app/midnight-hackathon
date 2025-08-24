@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "file": "index.cjs",
+  "sourceRoot": "../../../../",
+  "sources": ["src/ProposalVoting.compact", "src/./modules/Ownable.compact", "src/./modules/./Initializable.compact"],
+  "names": [],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAEA;;;;;;;;;;;;GAoDC;EApDD;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ICsCE;;;;;;;;;uDAAkE;IC3BlE;;;;;;;;;uDAAsC;IFaxC;;;;;;;;;uDAA4C;IAI5C;;;;;;;;;uDAA6C;IAG7C;;;;;;;;;uDAAiD;IAGjD;;;;;;;;;;;;;uDAAqD;IAGrD;;;;;;;;;;;;;uDAA0D;IAI1D;;;;;;;;;;uDAAgD;IAGhD;;;;;;;;;uDAAuC;IAMvC;;;;;;;;;uDAA8B;;;;;;;GAE7B;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA5BD;sCAAA;;;;;;;;;;;yFAA4C;KAAA;IAI5C;sCAAA;;;;;;;;;;;yFAA6C;KAAA;IAG7C;qCAAA;;;;;;;;;;;wFAAiD;KAAA;IAGjD;;;;;uCAAA;;;;;;;;;;;;;;;;;;;;;;0FAAqD;;;;;;;;;;;;;;uCAArD;;;;;;;;;;;;;;;;;;;;;;0FAAqD;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;KAAA;IAGrD;;;;;uCAAA;;;;;;;;;;;;;;;;;;;;;;0FAA0D;;;;;;;;;;;;;;uCAA1D;;;;;;;;;;;;;;;;;;;;;;0FAA0D;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;KAAA;IAI1D;;;;;uCAAA;;;;;;;;;;;;;;;;0FAAgD;;;;;;uCAAhD;;;;;;;;;;;;0FAAgD;;;;;;;;;;;;;;uCAAhD;;;;;;;;;;;;;;;0FAAgD;;;;;;;;;KAAA;IAGhD;qCAAA;;;;;;;;;;;wFAAuC;KAAA;IAMvC;qCAAA;;;;;;;;;;;wFAA8B;KAAA;;;;;;;;;;;;;;"
+}
