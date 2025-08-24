@@ -8,8 +8,20 @@ export default function AdminPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect to admin proposals by default
-    router.push('/admin/proposals');
+    // Check if admin is authenticated
+    // For now, redirect to admin login
+    // Later you can add authentication check here
+    // If authenticated, redirect to /admin/proposals
+    // If not authenticated, redirect to /admin/login
+
+    // Simulate authentication check
+    const isAdminAuthenticated = false; // Change this based on actual auth state
+
+    if (isAdminAuthenticated) {
+      router.push('/admin/proposals');
+    } else {
+      router.push('/admin/login');
+    }
   }, [router]);
 
   return (

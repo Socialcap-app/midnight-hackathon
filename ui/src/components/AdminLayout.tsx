@@ -157,8 +157,8 @@ export function AdminLayout({ children, activeTab, username = 'Admin' }: AdminLa
                   padding: '12px 16px',
                   borderRadius: '8px',
                   marginBottom: '4px',
-                  backgroundColor: isActive ? '#fff3cd' : 'transparent',
-                  border: isActive ? '1px solid #ffc107' : '1px solid transparent',
+                  backgroundColor: isActive ? 'var(--mantine-color-blue-0)' : 'transparent',
+                  border: isActive ? '1px solid var(--mantine-color-blue-6)' : '1px solid transparent',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
                 }}
@@ -177,12 +177,12 @@ export function AdminLayout({ children, activeTab, username = 'Admin' }: AdminLa
                   <Group gap="sm">
                     <Icon
                       size={20}
-                      color={isActive ? '#ffc107' : '#6c757d'}
+                      color={isActive ? 'var(--mantine-color-blue-6)' : '#6c757d'}
                     />
                     <Text
                       size="sm"
                       fw={isActive ? 600 : 400}
-                      c={isActive ? '#ffc107' : 'dark'}
+                      c={isActive ? 'var(--mantine-color-blue-6)' : 'dark'}
                     >
                       {item.label}
                     </Text>
@@ -191,7 +191,7 @@ export function AdminLayout({ children, activeTab, username = 'Admin' }: AdminLa
                     <Badge
                       size="sm"
                       variant="filled"
-                      color={item.key === 'activity' ? 'orange' : 'gray'}
+                      color={item.key === 'activity' ? 'blue' : 'gray'}
                       styles={{
                         root: {
                           minWidth: '20px',

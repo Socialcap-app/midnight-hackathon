@@ -18,6 +18,7 @@ import {
   IconActivity,
   IconFileText,
   IconLogout,
+  IconUsersPlus,
 } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
 
@@ -43,13 +44,13 @@ const navigationItems = [
     // TODO: Replace with real data from contract
     badge: 4, // pending items
   },
-  {
-    key: 'proposals',
-    label: 'Proposals',
-    icon: IconFileText,
-    href: '/proposals',
-    badge: 0,
-  },
+  // {
+  //   key: 'proposals',
+  //   label: 'Join as Validator',
+  //   icon: IconUsersPlus,
+  //   href: '/proposals',
+  //   badge: 0,
+  // },
 ];
 
 export function DashboardLayout({ children, activeTab, username = 'User' }: DashboardLayoutProps) {
