@@ -95,6 +95,23 @@ export default function LoginPage() {
                     Sign up!
                   </Link>
                 </Group>
+
+                <Group justify="center" gap="xs" mt="sm">
+                  <Text size="xs" c="dimmed">
+                    Admin access:
+                  </Text>
+                  <Link
+                    href="/admin/login"
+                    style={{
+                      color: '#dc2626',
+                      textDecoration: 'none',
+                      fontWeight: 500,
+                      fontSize: '12px'
+                    }}
+                  >
+                    Admin Login
+                  </Link>
+                </Group>
               </Stack>
             </form>
           </Stack>
